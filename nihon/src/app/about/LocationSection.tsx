@@ -31,15 +31,15 @@ const LocationSection = () => {
 
   return (
     <>
-      <div className="bg-primary py-12 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
+      <div ref={ref} className="bg-primary py-12 relative overflow-hidden">
+        <div className="container mx-auto px-auto relative z-10">
           <div className="text-center">
-            <div className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            {/* <div className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             } inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4`}>
               <MapPin className="w-8 h-8 text-white" />
-            </div>
+            </div> */}
           <h2
-            className={`text-3xl font-bold text-white text-center mb-6 transition-all duration-700 ${
+            className={`text-3xl font-bold text-white text-center transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
@@ -49,7 +49,7 @@ const LocationSection = () => {
         </div>
       </div>
 
-      <section ref={ref} className="py-16 bg-muted/30">
+      <section  className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           
           {/* Seção da Imagem e Descrição */}
