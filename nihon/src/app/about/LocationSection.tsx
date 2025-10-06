@@ -20,7 +20,7 @@ const LocationSection = () => {
     {
       icon: Phone,
       title: "Telefone",
-      content: "(61) 3000-0000",
+      content: "(61) 99961-4440",
     },
     {
       icon: Mail,

@@ -21,10 +21,10 @@ export default function Footer() {
             para o Varejo
           </p>
           <div className="flex gap-4 mt-3 text-xl text-gray-600">
-            <a href="#" aria-label="Facebook">
+            <a href="https://www.instagram.com/nihon_automacao/" aria-label="Instagram">
               <FaInstagram />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href="https://wa.me/5561999614440" aria-label="WhatsApp">
               <FaWhatsapp />
             </a>
           </div>
@@ -54,7 +54,7 @@ export default function Footer() {
             Compre pelo telefone: <strong>(61) 2107-7575</strong>
           </p>
           <a
-            href="https://wa.me/seu-numero"
+            href="https://wa.me/5561999614440"
             target="_blank"
             rel="noopener noreferrer"
             className="text-green-600 font-medium hover:text-green-700"

@@ -20,14 +20,14 @@ const Header = () => {
   };
 
   const navLinks = [
+    { href: "/", text: "Início" },
     { href: "/about", text: "Sobre Nós" },
-    { href: "/", text: "Home" },
   ];
 
   const socialLinks = [
-    { href: "https://wa.me/seu-numero", icon: FaWhatsapp, hoverColor: "hover:text-green-500", label: "WhatsApp" },
-    { href: "#", icon: FaInstagram, hoverColor: "hover:text-pink-500", label: "Instagram" },
-    { href: "#", icon: FaMapMarkerAlt, hoverColor: "hover:text-red-500", label: "Location" },
+    { href: "https://wa.me/5561999614440", icon: FaWhatsapp, hoverColor: "hover:text-green-500", label: "WhatsApp" },
+    { href: "https://www.instagram.com/nihon_automacao/", icon: FaInstagram, hoverColor: "hover:text-pink-500", label: "Instagram" },
+    { href: "https://maps.app.goo.gl/FEQ8GMZE9YFSNDoA9", icon: FaMapMarkerAlt, hoverColor: "hover:text-red-500", label: "Location" },
   ];
 
   return (
