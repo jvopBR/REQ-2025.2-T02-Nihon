@@ -178,7 +178,7 @@ function FaixaFornecedoresCarrossel() {
   }, [rerender, xTranslation, duration, firstWidth, mustFinish]);
 
   return (
-    <div className="w-full overflow-hidden bg-gray-200 mt-[100px] mb-20 relative">
+    <div className="w-full overflow-hidden bg-gray-200 mt-[100px] mb-20 relative h-[100px] flex items-center justify-center">
       <motion.div
         className="flex items-center gap-8 flex-nowrap"
         style={{ x: xTranslation, width: 'max-content', willChange: 'transform' }}
