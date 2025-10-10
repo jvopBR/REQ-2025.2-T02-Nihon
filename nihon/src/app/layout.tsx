@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <Header />
 
     {/* Conteúdo rolável */}
-    <main className="bg-white pt-[72px]">
+    <main className="bg-white">
       {children}
     </main>
 

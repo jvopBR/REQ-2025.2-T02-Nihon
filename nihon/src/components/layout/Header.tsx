@@ -22,6 +22,7 @@ const Header = () => {
   const navLinks = [
     { href: "/", text: "Início" },
     { href: "/about", text: "Sobre Nós" },
+    { href: "/products", text: "Produtos"},
   ];
 
   const socialLinks = [

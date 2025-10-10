@@ -1,0 +1,29 @@
+"use client";
+
+import { useState } from "react";
+import { SlMagnifier } from "react-icons/sl";
+
+export default function SearchBar() {
+  const [isFocused, setIsFocused] = useState(false);
+  const [value, setValue] = useState("");
+
+  return (
+    <div className="h-14 w-full bg-[#ED3135] flex items-center justify-center">
+      <div className="relative w-150"> {/* container para posicionar o ícone */}
+        <SlMagnifier
+          className={`absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 transition-opacity
+          ${isFocused || value ? "opacity-0" : "opacity-100"}`}
+        />
+        <input
+          type="text"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          placeholder="Pesquisar"
+          className="h-10 w-full bg-white rounded-3xl pl-10 pr-4 outline-none focus:ring-2 focus:ring-red-500"
+        />
+      </div>
+    </div>
+  );
+}
