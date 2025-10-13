@@ -1,8 +1,7 @@
 "use client";
 
-import random from "random"; //Teste aleatório
-import { useState, useEffect, useRef } from "react";
-
+import random from "random";
+import { useState, useEffect } from "react";
 
 import SearchBar from "./SearchBar";
 import BrandSection from "./BrandSection";
@@ -12,87 +11,85 @@ import SecondProductSection from "./SecondProductSection";
 import ChangePage from "./ChangePage";
 
 export default function Products() {
+  const [page, setPage] = useState(1);
+  const [evenID, setEvenID] = useState(0);
+  const [oddID, setOddID] = useState(1);
 
-    const [page, setPage] = useState(1);
-    const [evenID, setEvenID] = useState(0);
-    const [oddID, setOddID] = useState(1);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth", // rolagem suave
-        });
-    };
+  const nextPage = () => {
+    setPage(page + 1);
+    setEvenID(evenID + 2);
+    setOddID(oddID + 2);
+    scrollToTop();
+  };
 
-    const nextPage = () => {
-        setPage(page+1);
-        setEvenID(evenID+2);
-        setOddID(oddID+2);
-        scrollToTop();    
-    }
+  const previousPage = () => {
+    setPage(page - 1);
+    setEvenID(evenID - 2);
+    setOddID(oddID - 2);
+    scrollToTop();
+  };
 
-    const previousPage = () => {
-        setPage(page-1)
-        setEvenID(evenID-2);
-        setOddID(oddID-2);
-        scrollToTop();    
-    }
+  const [amountProducts] = useState(() => random.int(0, 60)); //Teste de produtos aleatórios
+  const [amountBrands] = useState(() => random.int(0, 13)); //Teste de marcas aleatórias
+  const brands = new Array(amountBrands).fill(0).map((_, i) => i + 1);
+  for(let i = 0 ; i < amountBrands ; i++) {
+      brands[i] = i+1;
+  }
 
-    const [amountProducts] = useState(() => random.int(0, 60)); //Teste de produtos aleatórios
-    const [amountBrands] = useState(() => random.int(0, 13)); //Teste de marcas aleatórias
-    const brands = new Array(amountBrands);
-    for(let i = 0 ; i < amountBrands ; i++) {
-        brands[i] = i+1;
-    }
+  const [products, setProducts] = useState([]); //Armazena os produtos
 
-    const [products, setProducts] = useState([]); //Armazena os produtos
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products?limit=${amountProducts}`)
+      .then((res) => res.json())
+      .then((data) => setProducts(data.products))
+      .catch((err) => console.error(err));
+  }, [amountProducts]);
 
-    //Endpoint conexão de produtos
-    useEffect(() => {
-        fetch(`https://dummyjson.com/products?limit=${amountProducts}`)
-        .then(res => res.json())
-        .then(data => setProducts(data.products))
-        .catch(err => console.error(err));
-    }, [amountProducts]);
+  const groupedProducts: any[][] = [];
+  for (let i = 0; i < products.length; i += 3) {
+  groupedProducts.push(products.slice(i, i + 3));
+  }
 
-    const groupedProducts: any[][] = [];
-    for (let i = 0; i < products.length; i += 3) {
-    groupedProducts.push(products.slice(i, i + 3));
-    }
+  const groupedGroups: any[][][] = [];
+  for (let i = 0; i < groupedProducts.length; i += 3) {
+  groupedGroups.push(groupedProducts.slice(i, i + 3));
+  }
 
-    const groupedGroups: any[][][] = [];
-    for (let i = 0; i < groupedProducts.length; i += 3) {
-    groupedGroups.push(groupedProducts.slice(i, i + 3));
-    }
+  const [totalPages, setTotalPages] = useState(0);
 
-    const [totalPages, setTotalPages] = useState(0);
+  useEffect(() => {
+    const pages = Math.ceil(amountProducts / 18);
+    setTotalPages(pages);
+  }, [amountProducts]);
 
-    useEffect(() => {
-        const pages = Math.ceil(amountProducts / 18);
-        setTotalPages(pages);
-    }, [amountProducts]);
-
-
-
-    return(
+   return(
         <div className="h-auto w-full bg-[#F2F2F2]">
             <SearchBar/>
             {amountBrands && amountProducts ? (
             <>  
-                <div className="py-10 mx-20">
+                <div className="py-6 px-4 sm:px-8 lg:px-20">
                      <BrandSection brands={brands}/>
                 </div>
-                <div className="mx-20">
+                
+                <div className="px-4 sm:px-8 lg:px-20">
                     {groupedGroups[evenID] ? 
                         (<FirstProductSection groupedGroup={groupedGroups[evenID]} />) : 
                     (null)}
                 </div>
-                <div className="py-10">
+
+                <div className="py-6 sm:py-10">
                     <Banner/>
                 </div>
                     
                 {groupedGroups[oddID] ? (
-                    <div className="mx-20 pb-5">
+                    <div className="px-4 sm:px-8 lg:px-20 pb-5">
                         <SecondProductSection groupedGroup={groupedGroups[oddID]}/>
                     </div>) : 
                 (null)}

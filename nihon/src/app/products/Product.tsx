@@ -3,29 +3,56 @@
 import { useRouter } from "next/navigation";
 
 type ProductProps = {
-    name: string;
-}
+  name: string;
+};
 
-export default function Product({name}: ProductProps) {
-  
-        const router = useRouter();
-    
-        const handleClick = () => {
-            router.push("/");
-        };
-  
-    return (
-    <div className=" flex-col w-75">
-        <div onClick ={handleClick} className="h-75 w-75 bg-cover shadow-[2px_4px_10px_rgba(0,0,0,0.2)] rounded-3xl transition hover:scale-105"></div>
-        <p className="text-[20px] text-center py-5">{name}</p>
-        <div className="flex justify-between items-center w-75 px-8">
+export default function Product({ name }: ProductProps) {
+  const router = useRouter();
 
-            <div className="flex items-center justify-center shadow-[2px_4px_10px_rgba(0,0,0,0.2)] bg-[#ED3135] w-25 h-10 rounded-full transition hover:scale-105">
-                <a href="/" className="text-white text-[15px]">Saiba mais</a>
-            </div>
-            
-            <a href="" className="text-[#ED3135] text-[15px] transition hover:scale-105">Fazer pedido</a>
-        </div>
+  const handleClick = () => {
+    router.push("/");
+  };
+
+  return (
+    <div className="flex flex-col w-full max-w-[220px] sm:max-w-[260px] md:max-w-[300px]">
+      <div onClick={handleClick} className="
+          h-40 sm:h-48 md:h-56
+          w-full
+          bg-gray-200 bg-cover bg-center
+          shadow-[2px_4px_10px_rgba(0,0,0,0.2)]
+          rounded-3xl
+          transition-transform hover:scale-105 cursor-pointer
+        "
+      ></div>
+
+      <p className="text-base sm:text-lg md:text-xl text-center py-3 text-black">
+        {name}
+      </p>
+
+      <div className="flex justify-between items-center w-full px-3 sm:px-4">
+        <button
+          onClick={handleClick}
+          className="
+            flex items-center justify-center
+            shadow-[2px_4px_10px_rgba(0,0,0,0.2)]
+            bg-[#ED3135]
+            px-4 sm:px-5
+            py-2
+            rounded-full
+            text-white text-sm sm:text-base
+            transition-transform hover:scale-105
+          ">
+          Saiba mais
+        </button>
+
+        <a href="#" className="
+            text-[#ED3135]
+            text-sm sm:text-base
+            transition-transform hover:scale-105
+          ">
+          Fazer pedido
+        </a>
+      </div>
     </div>
   );
 }

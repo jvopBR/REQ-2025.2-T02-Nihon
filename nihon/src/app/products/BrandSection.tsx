@@ -29,12 +29,12 @@ export default function BrandSection({ brands }: BrandSectionProps) {
   const canGoRight = startIndex + visibleCount < brands.length;
 
   return (
-    <div className="bg-white h-55 w-full rounded-3xl">
-      <p className="py-5 px-10 text-black">Marcas relacionadas</p>
+    <div className="bg-white w-full rounded-3xl shadow-sm px-4 py-6 sm:px-8 sm:py-8 overflow-hidden">
+      <p className="text-black text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Marcas relacionadas</p>
       
       <div className="flex items-center justify-center gap-4">
         {/* Setinha esquerda */}
-        <SlArrowLeft
+        <SlArrowLeft 
           onClick={canGoLeft ? handlePrev : undefined}
           className={`text-3xl transition ${
             canGoLeft ? "text-black cursor-pointer transition hover:scale-125" : "text-gray-300"
@@ -42,7 +42,7 @@ export default function BrandSection({ brands }: BrandSectionProps) {
         />
 
         {/* Brands */}
-        <div className="flex items-center justify-between gap-24">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-10 lg:gap-16 w-full sm:w-auto">
           {displayedBrands.map((brand, index) => (
             <Brand key={startIndex + index} {...brand} />
           ))}
