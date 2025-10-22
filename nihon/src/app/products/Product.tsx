@@ -91,7 +91,7 @@ export default function Product({ name }: ProductProps) {
             px-[10px] py-[5px] text-[8px]
             min-[375px]:px-[12.5px] min-[375px]:py-[7.5px] min-[375px]:text-[9.5px]
             min-[390px]:text-[10.5px]
-            md:px-[20 px] md:py-[10px] md:text-[12px]
+            md:px-[20px] md:py-[10px] md:text-[12px]
             lg:px-[25px] lg:py-[12.5px] lg:text-[14px]
             xl:px-[35px] xl:text-[16px]
             rounded-full
