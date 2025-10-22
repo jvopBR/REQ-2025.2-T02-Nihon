@@ -7,7 +7,7 @@ type FirstProductSectionProps = {
 
 export default function FirstProductSection({ products }: FirstProductSectionProps) {
   return (
-    <section className="bg-white w-full rounded-3xl shadow-sm py-5">
+    <section className="bg-white w-full max-w-7xl mx-auto rounded-3xl shadow-sm py-5">
       <p className="text-black text-[13px] 
       min-[375px]:text-[14.5px] 
       min-[390px]:text-[16px] 
