@@ -31,7 +31,7 @@ const LocationSection = () => {
 
   return (
     <>
-      <div ref={ref} className="bg-primary py-12 relative overflow-hidden">
+      <div id="location" ref={ref} className="bg-primary py-12 relative overflow-hidden">
         <div className="container mx-auto px-auto relative z-10">
           <div className="text-center">
             {/* <div className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

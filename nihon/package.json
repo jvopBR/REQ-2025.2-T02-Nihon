@@ -5,11 +5,17 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:report": "cypress run --reporter mochawesome",
+    "cy:report": "npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome.json && npx marge cypress/reports/mochawesome.json --reportDir cypress/reports --inline",
+    "test:e2e": "npm run cy:run:report && npm run cy:report",
+    "test:e2e:open": "cypress open"
   },
   "dependencies": {
-    "framer-motion": "^12.23.22",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
     "next": "^15.5.4",
     "react": "^19.1.0",
@@ -23,6 +29,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cypress": "^14.5.4",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
