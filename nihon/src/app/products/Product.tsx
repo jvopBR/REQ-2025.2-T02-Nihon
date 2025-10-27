@@ -10,7 +10,7 @@ export default function Product({ name }: ProductProps) {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/");
+    router.push("/produtosDescricao");
   };
 
   return (

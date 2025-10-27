@@ -7,7 +7,7 @@ export default function ProductInfo({ title = 'Produto Balança Comercial para U
       <h1 className="text-center sm:text-left text-lg font-semibold mb-4">{title}</h1>
 
       <div className="flex justify-center sm:justify-start">
-        <button className="bg-red-500 text-white px-6 py-2 rounded-full shadow">Fazer Orçamento</button>
+        <button className="bg-red-500 text-white px-6 py-2 rounded-full shadow w-full sm:w-auto">Fazer Orçamento</button>
       </div>
 
       <div className="mt-6 bg-white rounded-lg shadow p-4">

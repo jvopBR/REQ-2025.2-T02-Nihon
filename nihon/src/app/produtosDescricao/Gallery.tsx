@@ -30,15 +30,15 @@ export default function Gallery({ images }: { images: string[] }) {
 
       {/* main */}
       <div className="relative flex-1 flex items-center justify-center">
-        <button onClick={prev} aria-label="previous" className="absolute left-0 z-10 p-2 bg-white rounded-full shadow-md -ml-4">
+        <button onClick={prev} aria-label="previous" className="absolute left-0 z-10 p-2 bg-white rounded-full shadow-md -ml-2 sm:-ml-4">
           ‹
         </button>
 
-        <div className="bg-white rounded-xl p-6 shadow-inner w-full max-w-md flex items-center justify-center">
-          <Image src={images[index]} alt={`product-${index}`} width={450} height={300} className="object-contain" />
+        <div className="bg-white rounded-xl p-4 shadow-inner w-full max-w-full flex items-center justify-center">
+          <Image src={images[index]} alt={`product-${index}`} width={800} height={600} className="w-full h-auto object-contain" />
         </div>
 
-        <button onClick={next} aria-label="next" className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md -mr-4">
+        <button onClick={next} aria-label="next" className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md -mr-2 sm:-mr-4">
           ›
         </button>
       </div>
