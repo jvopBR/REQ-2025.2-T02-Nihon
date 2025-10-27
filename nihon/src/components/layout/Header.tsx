@@ -22,6 +22,7 @@ const Header = () => {
   const navLinks = [
     { href: "/", text: "Início" },
     { href: "/about", text: "Sobre Nós" },
+    { href: "/products", text: "Produtos"},
   ];
 
   const socialLinks = [
@@ -33,14 +34,14 @@ const Header = () => {
   return (
     <>
       <header className="sticky top-0 z-50 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto flex justify-between items-center h-[72px] px-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center h-[55px] lg:h-[70px] px-6">
           {/* Logo */}
           <Link href="/" onClick={handleLinkClick}>
             <Image
               src="/logo/logoHorizontal.jpeg"
               alt="Nihon Automação Logo"
-              width={120}
-              height={50}
+              width={72}
+              height={30}
               className="object-contain"
               priority
             />
@@ -67,7 +68,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button onClick={toggleMenu} aria-label="Toggle Menu">
-              {isOpen ? <FiX className="h-7 w-7 text-gray-800" /> : <FiMenu className="h-7 w-7 text-gray-800" />}
+              {isOpen ? <FiX className="h-7 w-7 text-gray-800" /> : <FiMenu className="h-7 w-7 text-primary" />}
             </button>
           </div>
         </div>
