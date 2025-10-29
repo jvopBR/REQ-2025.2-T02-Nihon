@@ -5,12 +5,14 @@ import Brand from "./Brand";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 type BrandSectionProps = {
-  brands: any[];
+  brands: any[] | null,
+  productName: string | null,
+  isOnBrandPage?: boolean;
 };
 
-export default function BrandSection({ brands }: BrandSectionProps) {
+export default function BrandSection({ brands, productName, isOnBrandPage }: BrandSectionProps) {
   const [startIndex, setStartIndex] = useState(0);
-   const [visibleCount, setVisibleCount] = useState(3); // padrão inicial (mobile)
+  const [visibleCount, setVisibleCount] = useState(3); // padrão inicial (mobile)
 
   // Define quantos itens aparecem conforme o tamanho da tela
   useEffect(() => {
@@ -28,6 +30,8 @@ export default function BrandSection({ brands }: BrandSectionProps) {
   }, []);
 
   // Seleciona o grupo atual
+  if(!brands) brands = [];
+  
   const displayedBrands = brands.slice(startIndex, startIndex + visibleCount);
 
   const handleNext = () => {
@@ -45,9 +49,8 @@ export default function BrandSection({ brands }: BrandSectionProps) {
   // Condições
   const canGoLeft = startIndex > 0;
   const canGoRight = startIndex + visibleCount < brands.length;
-
   return (
-    <div className="bg-white h-auto w-full rounded-3xl shadow-sm">
+    <div className="bg-white h-auto w-full max-w-7xl mx-auto rounded-3xl shadow-sm">
       <p className="text-black text-[13px] 
       min-[375px]:text-[14.5px] 
       min-[390px]:text-[16px] 
@@ -90,7 +93,7 @@ export default function BrandSection({ brands }: BrandSectionProps) {
           `}
         >
           {displayedBrands.map((brand, index) => (
-            <Brand key={startIndex + index} {...brand} />
+            <Brand key={startIndex + index} name={brand.nome} productName={productName} isOnBrandPage={isOnBrandPage}/>
           ))}
         </div>
           

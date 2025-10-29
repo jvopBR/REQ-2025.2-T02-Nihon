@@ -1,4 +1,4 @@
-import { fetchAllProducts } from "@/lib/supabase/productPage";
+import { fetchProductsByCategory } from "@/lib/supabase/productPage";
 import { filterProductsByName } from "@/lib/supabase/productPage";
 import { fetchBrandsByProducts } from "@/lib/supabase/productPage";
 
@@ -9,12 +9,14 @@ import Banner from "@/components/productPages/Banner";
 import SecondProductSection from "@/components/productPages/SecondProductSection";
 import ChangePage from "@/components/productPages/ChangePage";
 
-export default async function Page({ searchParams }: { searchParams: { productName?: string, page?: string} }) {
+export default async function Page({ params, searchParams }: {params: {categoryName: string}, searchParams: { productName?: string, page?: string} }) {
 
+  const categoryName = decodeURIComponent(params.categoryName);
   const productName = searchParams?.productName || null;
   const page = Number(searchParams.page) || 1;
+  console.log(`Nome categoria: ${categoryName}`);
   
-  let products = await fetchAllProducts();
+  let products = await fetchProductsByCategory(categoryName);
 
   if (productName) {
     products = filterProductsByName(products ,productName);
@@ -37,7 +39,7 @@ export default async function Page({ searchParams }: { searchParams: { productNa
 
    return(
         <div className="h-auto w-full bg-[#F2F2F2]">
-            <SearchBar/>
+            <SearchBar category={true} categoryName={categoryName}/>
             {amountBrands && amountProducts ? (
             <>  
                 <div className="py-6 mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
@@ -61,7 +63,7 @@ export default async function Page({ searchParams }: { searchParams: { productNa
                 (null)}
 
                 <div className="flex justify-center pb-5">
-                    <ChangePage actualPage={page} lastPage={totalPages} name={productName}/>
+                    <ChangePage actualPage={page} lastPage={totalPages} category={categoryName}/>
                 </div>
             </>) : 
             (<>
