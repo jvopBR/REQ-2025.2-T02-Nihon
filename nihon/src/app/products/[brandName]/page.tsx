@@ -64,7 +64,7 @@ export default async function Page({ params, searchParams }: {params: {brandName
                 (null)}
 
                 <div className="flex justify-center pb-5">
-                    <ChangePage actualPage={page} lastPage={totalPages}/>
+                    <ChangePage actualPage={page} lastPage={totalPages} productName={productName}/>
                 </div>
             </>) : 
             (<>
