@@ -1,6 +1,7 @@
-import { fetchAllProducts } from "@/lib/supabase/productPage";
+import { fetchProductsByCategory } from "@/lib/supabase/productPage";
 import { filterProductsByName } from "@/lib/supabase/productPage";
 import { fetchBrandsByProducts } from "@/lib/supabase/productPage";
+import { filterProductsByBrand } from "@/lib/supabase/productPage";
 
 import SearchBar from "@/components/productPages/SearchBar";
 import BrandSection from "@/components/productPages/BrandSection"; 
@@ -9,15 +10,18 @@ import Banner from "@/components/productPages/Banner";
 import SecondProductSection from "@/components/productPages/SecondProductSection";
 import ChangePage from "@/components/productPages/ChangePage";
 
-export default async function Page({ searchParams }: { searchParams: { productName?: string, page?: string} }) {
+export default async function Page({ params, searchParams }: {params: {categoryName: string, brandName: string}, searchParams: { productName?: string, page?: string} }) {
 
+  const categoryName = decodeURIComponent(params.categoryName);
+  const brandName = decodeURIComponent(params.brandName);
   const productName = searchParams?.productName || null;
   const page = Number(searchParams.page) || 1;
-  
-  let products = await fetchAllProducts();
+
+  let products = await fetchProductsByCategory(categoryName);
+  products = await filterProductsByBrand(products, brandName);    
 
   if (productName) {
-    products = filterProductsByName(products ,productName);
+    products = filterProductsByName(products , productName);
   } 
  
   const brands =  await fetchBrandsByProducts(products); 
@@ -37,11 +41,11 @@ export default async function Page({ searchParams }: { searchParams: { productNa
 
    return(
         <div className="h-auto w-full bg-[#F2F2F2]">
-            <SearchBar/>
+            <SearchBar category={true} categoryName={categoryName}/>
             {amountBrands && amountProducts ? (
             <>  
                 <div className="py-6 mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
-                     <BrandSection brands={brands} productName={productName}/>
+                     <BrandSection brands={brands} productName={productName} isOnBrandPage={true}/>
                 </div>
                 
                 <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">

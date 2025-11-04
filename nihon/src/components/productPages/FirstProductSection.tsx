@@ -1,11 +1,10 @@
-"use client";
 import Product from "./Product";
 
 type FirstProductSectionProps = {
   products: any[];
 };
 
-export default function FirstProductSection({ products }: FirstProductSectionProps) {
+export default async function FirstProductSection({ products }: FirstProductSectionProps) {
   return (
     <section className="bg-white w-full max-w-7xl mx-auto rounded-3xl shadow-sm py-5">
       <p className="text-black text-[13px] 
@@ -19,9 +18,15 @@ export default function FirstProductSection({ products }: FirstProductSectionPro
       pb-[25px]">Produtos relacionados</p>
 
 
-      <div className="flex flex-wrap justify-between gap-3 px-[25px]">
+      <div className="flex flex-wrap justify-center px-[25px] 
+      gap-3  
+      sm:gap-7
+      md:gap-6.5
+      xl:gap-10
+      2xl:gap-20
+      ">
         {products.map((product) => (
-          <Product key={product.id} name={product.title} />
+          <Product key={product.idproduto} name={product.nome} idproduto={product.idproduto}/>
         ))}
       </div>
     </section>
