@@ -4,7 +4,7 @@ import { motion, useMotionValue, animate } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
-import FornecedorCard from "../components/FornecedorCard";
+import FornecedorCard from "@/components/FornecedorCard";
 import Link from "next/link";
 
 

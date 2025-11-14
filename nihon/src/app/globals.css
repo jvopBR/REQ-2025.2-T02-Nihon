@@ -128,10 +128,10 @@
     font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+  /* h1, h2, h3, h4, h5, h6 {
     font-family: "Arial Black", Arial, sans-serif;
     font-weight: 900;
-  }
+  } */
   
   p, span, div {
     font-family: "Arial", Arial, sans-serif;
