@@ -58,7 +58,7 @@ export default function BrandSection({ brands, productName, isOnBrandPage }: Bra
       min-[420px]:text-[19px]
       lg:text-[22px]
       xl:text-[24px]
-      px-[25px] py-[25px]">Marcas relacionadas</p>
+      px-[25px] py-[25px]">Selecione o fabricante</p>
       
       <div className="flex items-center justify-around pb-10">
         {/* Setinha esquerda */}

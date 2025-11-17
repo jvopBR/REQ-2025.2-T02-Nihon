@@ -30,6 +30,11 @@ export default function Page() {
                             <textarea name="" id="" className="h-10 w-full border border-gray-300 focus:outline-none rounded-3xl px-5 py-1.5"/>
                         </div>
                     </div>
+                    <div className="flex flex-col"> 
+                        <h1>Características</h1>
+                        <textarea name="" id="" className="h-10 w-full border border-gray-300 focus:outline-none rounded-3xl px-5 py-1.5"/>
+                    </div>
+                    <div></div>
                     <div>
                         <h1>Descrição</h1>
                         <textarea name="" id="" className="h-40 w-full border border-gray-300 focus:outline-none rounded-3xl px-5 py-1.5"></textarea>

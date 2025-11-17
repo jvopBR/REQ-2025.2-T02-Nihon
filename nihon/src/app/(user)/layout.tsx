@@ -21,22 +21,7 @@ export const metadata: Metadata = {
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="pt-BR">
-  <body className="flex flex-col min-h-screen bg-white">
-    {/* Header fixo */}
-    <Header />
-
-    {/* Conteúdo rolável */}
-    <main className="bg-white">
-      {children}
-    </main>
-
-    {/* Footer */}
-    <Footer />
-    <ScrollToTopButton />
-  </body>
-    </html>
-  );
+export default function UserLayout({ children }: { children: React.ReactNode }) {
+  // layout filho deve apenas renderizar children quando Header/Footer já são gerenciados no root
+  return <>{children}</>;
 }

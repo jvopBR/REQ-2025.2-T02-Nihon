@@ -1,15 +1,24 @@
 export default function Banner() {
   return (
-    <div 
-      className="bg-[#ED3135] h-auto shadow-sm w-full py-10 md:py-15 lg:py-20 xl:py-25 ">
-      <div className="flex justify-between max-w-7xl mx-auto">
-        <div style={{ backgroundImage: "url('/images/logoBannerProductPage.png')" }} className="bg-cover bg-center h-15 w-40 md:h-20 md:w-55 xl:h-30 xl:w-80 ml-4 sm:ml-6 md:ml-8 lg:ml-10 xl:ml-12"></div>
+    <div className="w-full bg-[#ED3135]">
+      <div className="max-w-7xl mx-auto h-8 md:h-10 lg:h-12 flex items-center relative px-4">
+        {/* linha fina branca translúcida */}
+        <div className="absolute inset-x-0 top-0 h-0.5 bg-white/25" />
 
-        <p className="text-white pt-2.5 text-[12px] sm:text-[13px] md:text-[20px] lg:text-[24px] xl:text-[26px] w-32 sm:w-45 md:w-70 lg:w-80 xl:w-100 text-justify font-bold mr-4 sm:mr-6 md:mr-8 lg:mr-10 xl:mr-12">
+        {/* Logo sólido à esquerda */}
+        <div className="flex items-center z-20">
+          <img
+            src="/images/logoBannerProductPage.png"
+            alt="Nihon"
+            className="h-6 md:h-8 lg:h-10 object-contain"
+          />
+        </div>
+
+        {/* Texto centralizado */}
+        <p className="absolute left-1/2 transform -translate-x-1/2 text-white text-[12px] md:text-sm lg:text-base font-bold opacity-95">
           TUDO QUE VOCÊ PRECISA PARA O SEU NEGÓCIO!
         </p>
       </div>
-      
     </div>
   );
 }

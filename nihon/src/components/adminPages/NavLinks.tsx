@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 const links = [
   { name: 'Produtos', href: '/auth/admin/products', icon: BsBoxSeam },
-  { name: 'Casos de Sucesso', href: '/auth/admin/successCases', childrenHref: '', icon: CgFileDocument },
+  { name: 'Projetos Finalizados', href: '/auth/admin/successCases', childrenHref: '', icon: CgFileDocument },
   { name: 'Orçamentos', href: '/auth/admin/orders', childrenHref: '', icon: BsChatLeft  }
 ];
 
