@@ -4,6 +4,7 @@ import "./globals.css";
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import HideOnAuth from './components/HideOnAuth';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,17 +25,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <body>
-        {/* Header fixo */}
-        <Header />
+        <HideOnAuth>
+          <Header />
+        </HideOnAuth>
 
-        {/* Conteúdo rolável */}
-        <main className="bg-white">
-          {children}
-        </main>
+        {children}
 
-        {/* Footer */}
-        <Footer />
-        <ScrollToTopButton />
+        <HideOnAuth>
+          <Footer />
+        </HideOnAuth>
       </body>
     </html>
   );

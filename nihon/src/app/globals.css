@@ -138,3 +138,59 @@
     font-weight: 500;
   }
 }
+
+/* Grid responsivo para a listagem de produtos */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ajustes para o card do produto — garanta que o componente Product use .product-card ou ajuste o seletor */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--card-bg, #fff);
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+/* Imagem dentro do card */
+.product-card img,
+.product-card .product-image {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Títulos/descrição ocupem o restante do espaço */
+.product-card .info {
+  flex: 1 1 auto;
+}
+
+/* Quebra fina para telas bem pequenas */
+@media (max-width: 420px) {
+  .product-card img,
+  .product-card .product-image {
+    height: 120px;
+  }
+  .products-grid {
+    gap: 0.75rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Mais espaço em telas grandes */
+@media (min-width: 1200px) {
+  .products-grid {
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+}
