@@ -23,7 +23,7 @@ const ValuesSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-16 bg-background">
+    <section id="values" ref={ref} className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <h2 className={`text-3xl font-bold text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>Nossos valores</h2>
         

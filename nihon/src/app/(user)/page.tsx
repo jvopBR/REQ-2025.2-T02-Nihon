@@ -4,7 +4,9 @@ import { motion, useMotionValue, animate } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
-import FornecedorCard from "../components/FornecedorCard";
+import FornecedorCard from "@/components/FornecedorCard";
+import Link from "next/link";
+
 
 export default function Home() {
   const categories = [
@@ -25,6 +27,14 @@ export default function Home() {
     "PADARIA",
     "REFRIGERAÇÃO",
     "AUTOMAÇÃO COMERCIAL",
+  ];
+
+  const square_categories_ref = [
+    "Supermercado",
+    "Açougue",
+    "Padaria e Confeitaria",
+    "Refrigeração Comercial",
+    "Automação Comercial",
   ];
 
   const square_categories_img = [
@@ -72,9 +82,11 @@ export default function Home() {
             </div>
           </div>
 
+          
           {/* square categories */}
           <div className="flex items-center gap-20 justify-center px-8 mt-15">
             {[...Array(5)].map((_, i) => (
+              <Link key={i} href={`/${encodeURIComponent(square_categories_ref[i])}/products`}>
               <motion.div
                 key={i}
                 className="w-50 h-60 bg-gray-200 flex flex-col items-center justify-center shadow-2xl rounded-xl"
@@ -95,7 +107,10 @@ export default function Home() {
                   className="w-36 h-36 object-contain"
                 />
               </motion.div>
+              </Link>
+
             ))} 
+            
           </div>
 
           {/* diferenciais */}
@@ -178,7 +193,7 @@ function FaixaFornecedoresCarrossel() {
   }, [rerender, xTranslation, duration, firstWidth, mustFinish]);
 
   return (
-    <div className="w-full overflow-hidden bg-gray-200 mt-[100px] mb-20 relative">
+    <div className="w-full overflow-hidden bg-gray-200 mt-[100px] mb-20 relative h-[80px] flex items-center justify-center">
       <motion.div
         className="flex items-center gap-8 flex-nowrap"
         style={{ x: xTranslation, width: 'max-content', willChange: 'transform' }}

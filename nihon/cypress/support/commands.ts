@@ -25,6 +25,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
+<<<<<<< HEAD
 // declare global {
 //   namespace Cypress {
 //     interface Chainable {
@@ -35,3 +36,9 @@
 //     }
 //   }
 // }
+=======
+// Custom commands for Nihon project will be added later
+// For now, we'll use standard Cypress commands
+
+export {}
+>>>>>>> c0eff23b0cea13af0dd3cf8f9d55569fbedc9c8c
