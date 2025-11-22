@@ -5,6 +5,11 @@ on: [push, pull_request]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    # Define o diretório de trabalho padrão para todos os steps deste job (opcional, mas prático)
+    defaults:
+      run:
+        working-directory: nihon
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -14,15 +19,15 @@ jobs:
         with:
           node-version: 20
 
-      # CORREÇÃO: Entra na pasta 'nihon' para instalar
+      # O 'working-directory' padrão definido acima já se aplica aqui, 
+      # mas se não usar 'defaults', adicione 'working-directory: nihon'
       - name: Install Dependencies
-        working-directory: nihon
         run: npm ci
 
-      # CORREÇÃO: Avisa a Action do Cypress que o projeto está na pasta 'nihon'
       - name: Cypress Run
         uses: cypress-io/github-action@v6
         with:
+          # Importante: Indicar para a action do Cypress onde está o projeto
           working-directory: nihon
           start: npm run dev
           wait-on: 'http://localhost:3000'
