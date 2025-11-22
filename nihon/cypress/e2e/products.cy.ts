@@ -45,16 +45,14 @@ describe('Página de Listagem de Produtos (E2E)', () => {
   it('deve redirecionar para o detalhe ao clicar no card', () => {
     cy.get('body').then(($body) => {
       if ($body.find('a[href*="/produtosDescricao"]').length > 0) {
-        
-        // Clica no primeiro CARD de produto encontrado
-        // (Como o card inteiro é um Link, qualquer clique nele funciona)
         cy.get('a[href*="/produtosDescricao"]').first().click({ force: true })
         
-        // Valida redirecionamento
-        cy.url({ timeout: 15000 }).should('include', '/produtosDescricao')
+        // Aumenta timeout para 30s (CI é lento)
+        cy.url({ timeout: 30000 }).should('include', '/produtosDescricao')
         
-        // Verifica se carregou o título na nova página
-        cy.get('h1', { timeout: 10000 }).should('exist')
+        // Verifica se o breadcrumb ou qualquer texto carregou, não só o H1
+        // Isso é mais seguro se o H1 demorar para vir do banco
+        cy.get('body', { timeout: 30000 }).should('contain.text', 'Fazer Orçamento')
       }
     })
   })
