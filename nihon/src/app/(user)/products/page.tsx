@@ -4,9 +4,8 @@ import { fetchBrandsByProducts } from "@/lib/supabase/productPage";
 
 import SearchBar from "@/components/productPages/SearchBar";
 import BrandSection from "@/components/productPages/BrandSection";
-import FirstProductSection from "@/components/productPages/FirstProductSection";
+import ProductSection from "@/components/productPages/ProductSection";
 import Banner from "@/components/productPages/Banner";
-import SecondProductSection from "@/components/productPages/SecondProductSection";
 import ChangePage from "@/components/productPages/ChangePage";
 
 export default async function Page({ searchParams }: { searchParams: { productName?: string, page?: string} }) {
@@ -36,9 +35,6 @@ export default async function Page({ searchParams }: { searchParams: { productNa
   const startIndex = (page - 1) * pageSize;
   const pageItems = (products || []).slice(startIndex, startIndex + pageSize);
 
-  // divide em duas seções (cada componente espera até 8 itens)
-  const firstEight = pageItems.slice(0, 8);
-  const secondFour = pageItems.slice(8, 12);
 
   return(
     <div className="h-auto w-full bg-[#F2F2F2]">
@@ -51,19 +47,11 @@ export default async function Page({ searchParams }: { searchParams: { productNa
 
         <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
           {/* seção superior (até 8 itens) */}
-          <FirstProductSection products={firstEight} />
+          <ProductSection products={pageItems} />
         </div>
 
-        <div className="mx-4 mt-8 pb-5 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
-          {/* seção inferior (até 4 itens) */}
-          <SecondProductSection products={secondFour}/>
-        </div>
-
-        <div className="flex justify-center pb-5">
+        <div className="flex flex-col justify-center items-center gap-5 py-5">
           <ChangePage actualPage={page} lastPage={totalPages} productName={productName}/>
-        </div>
-
-        <div className="py-6">
           <Banner/>
         </div>
 
