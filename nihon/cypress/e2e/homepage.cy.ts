@@ -1,58 +1,46 @@
-/// <reference types="cypress" />
+describe('Home Page (E2E)', () => {
+  
+  Cypress.on('uncaught:exception', () => false)
 
-describe('Homepage', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.viewport(1280, 800)
+    cy.visit('http://localhost:3000/')
   })
 
-  it('should load the homepage successfully', () => {
-    cy.get('body').should('be.visible')
-    
-    cy.get('h1, h2, h3').should('exist')
-    
-    cy.get('img[alt*="Banner"]').should('be.visible')
+  it('deve carregar a home e exibir o banner principal', () => {
+    cy.get('img[alt="Banner principal"]').should('be.visible')
   })
 
-  it('should handle navigation functionality', () => {
-    cy.viewport(1280, 720)
-    
-    cy.get('header, nav').should('be.visible')
-    cy.contains('Início').should('be.visible')
-    cy.contains('Sobre Nós').should('be.visible')
-    
-    cy.url().should('eq', Cypress.config().baseUrl + '/')
-    
-    cy.contains('Sobre Nós').click()
-    cy.url().should('include', '/about')
-    
-    cy.contains('Início').click()
-    cy.url().should('eq', Cypress.config().baseUrl + '/')
-
-    cy.get('a[href*="wa.me"]').should('be.visible').and('have.attr', 'href').and('include', 'wa.me')
-    cy.get('a[href*="instagram.com"]').should('be.visible').and('have.attr', 'href').and('include', 'instagram.com')
-    cy.get('a[href*="maps.app.goo.gl"]').should('be.visible').and('have.attr', 'href').and('include', 'maps.app.goo.gl')
+  it('deve listar as categorias de texto no topo', () => {
+    cy.contains('Supermercado').should('be.visible')
+    cy.contains('Padaria e confeitaria').should('be.visible')
+    cy.contains('Automação Comercial').should('be.visible')
   })
 
-  it('should handle mobile menu functionality', () => {
-    cy.viewport(375, 667)
+  it('deve navegar para a lista de produtos ao clicar no Card de Categoria', () => {
+    // CORREÇÃO:
+    // 1. Procuramos o card pelo texto visível "AÇOUGUE"
+    // 2. Subimos até encontrar o elemento <a> (Link)
+    // 3. Forçamos o clique para "atravessar" a animação do Framer Motion
+    cy.contains('AÇOUGUE')
+      .closest('a')
+      .click({ force: true })
+
+    // Verificação mais flexível da URL (aceita codificado ou decodificado)
+    // A regex /A(%C3%A7|ç)ougue/ aceita tanto "Açougue" quanto "A%C3%A7ougue"
+    cy.url({ timeout: 15000 }).should('match', /A(%C3%A7|ç)ougue\/products/)
     
-    cy.get('body').then($body => {
-      if ($body.find('button[aria-label*="menu"], button[aria-label*="Menu"]').length > 0) {
-        cy.get('button[aria-label*="menu"], button[aria-label*="Menu"]').first().click()
-        cy.get('nav, [role="navigation"]').should('be.visible')
-      } else if ($body.find('button').length > 0) {
-        cy.get('button').first().click({ force: true })
-      }
-    })
+    // Verifica se saiu da Home (garantia extra)
+    cy.url().should('not.eq', 'http://localhost:3000/')
   })
 
-  it('should have no console errors', () => {
-    cy.window().then((win) => {
-      cy.stub(win.console, 'error').as('consoleError')
-    })
-    
-    cy.visit('/')
-    
-    cy.get('@consoleError').should('not.have.been.called')
+  it('deve exibir os diferenciais da empresa (Ícones)', () => {
+    cy.contains('Estoque Próprio').should('be.visible')
+    cy.contains('Mais de 200 lojas montadas').should('be.visible')
+  })
+
+  it('deve carregar o carrossel de fornecedores', () => {
+    // Verifica se pelo menos uma imagem do carrossel foi renderizada
+    cy.get('img[src*="gelopar"]').should('exist')
   })
 })

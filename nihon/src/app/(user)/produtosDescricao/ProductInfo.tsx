@@ -2,7 +2,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FaPhoneAlt, FaArrowLeft } from "react-icons/fa";
+// Importando cada ícone de um arquivo individual para não quebrar o build
+import { FaPhoneAlt } from "@react-icons/all-files/fa/FaPhoneAlt";
+import { FaArrowLeft } from "@react-icons/all-files/fa/FaArrowLeft";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ProductInfo({ product, loading }: { product: any, loading: boolean }) {

@@ -1,62 +1,31 @@
-name: Continuous Integration
+name: Cypress Tests
 
-on:
-  push:
-    branches: [ main, develop, test/frontend-tests ]
-  pull_request:
-    branches: [ main, develop ]
-  workflow_dispatch:
+on: [push, pull_request]
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: nihon/package-lock.json
+          node-version: 20
 
-      - name: Cypress run
+      - name: Install Dependencies
+        working-directory: nihon
+        run: npm ci
+
+      - name: Cypress Run
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./nihon
-          build: npm run build
-          start: npm start
+          working-directory: nihon
+          start: npm run dev
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 120
-          command: npm run cy:run:report
+          browser: chrome
         env:
-          CYPRESS_baseUrl: http://localhost:3000
-
-      - name: Upload Cypress screenshots
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: nihon/cypress/screenshots/
-          retention-days: 7
-          if-no-files-found: ignore
-
-      - name: Upload Cypress videos
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cypress-videos
-          path: nihon/cypress/videos/
-          retention-days: 7
-          if-no-files-found: ignore
-
-      - name: Upload test reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: mochawesome-reports
-          path: nihon/cypress/reports/
-          retention-days: 30
-          if-no-files-found: ignore
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
