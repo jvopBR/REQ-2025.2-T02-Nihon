@@ -8,12 +8,16 @@ import ProductSection from "@/components/productPages/ProductSection";
 import Banner from "@/components/productPages/Banner"; 
 import ChangePage from "@/components/productPages/ChangePage";
 
-export default async function Page({ params, searchParams }: {params: {categoryName: string}, searchParams: { productName?: string, page?: string} }) {
+export default async function Page({ params, searchParamsPromise }: { params: Promise<{ categoryName: string }>, searchParamsPromise: Promise<{ productName?: string, page?: string }> }) {
 
-  const categoryName = decodeURIComponent(params.categoryName);
-  const productName = searchParams?.productName || null;
-  let page = Number(searchParams.page) || 1;
-  
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParamsPromise;
+
+  const categoryName = decodeURIComponent(resolvedParams.categoryName);
+  const productName = resolvedSearchParams?.productName || null;
+  let page = Number(resolvedSearchParams?.page) || 1;
+
+
   let products = await fetchProductsByCategory(categoryName);
 
   if (productName) {

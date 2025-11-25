@@ -11,7 +11,7 @@ export const fetchAllProducts = async () => {
 }
 
 export const fetchProductsByCategory = async (name: string) => {
-    const { data: idCategory, error: categoryError } = await supabase.from('categoria').select('idcategoria').eq('nome', name).eq('status', true);
+    const { data: idCategory, error: categoryError } = await supabase.from('categoria').select('idcategoria').eq('nome', name);
     if(categoryError) throw categoryError;
 
     const { data: idProducts, error: idProductsError } = await supabase.from('produtos_categorias').select('idproduto').eq('idcategoria', idCategory?.[0].idcategoria);
