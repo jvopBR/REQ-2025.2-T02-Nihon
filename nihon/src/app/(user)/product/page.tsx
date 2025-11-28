@@ -14,13 +14,15 @@ type Product = {
   descricao: string;
 };
 
-export default async function ProductDescriptionPage({ searchParams }: { searchParams: { id: number }}) {
+export default async function ProductDescriptionPage({ searchParams }: { searchParams: Promise<{ id: number }>}) {
 
-  if (!searchParams?.id) { 
+  const { id } = await searchParams;
+
+  if (!id) { 
     redirect("/");
   }
   
-  const idproduto = Number(searchParams.id);
+  const idproduto = Number(id);
 
   let product: Product | null = null;
   let supplierName: string | null = null;

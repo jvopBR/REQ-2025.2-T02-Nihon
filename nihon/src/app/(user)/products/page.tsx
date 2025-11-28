@@ -50,7 +50,7 @@ export default async function Page({ searchParams }: { searchParams: { productNa
           <ProductSection products={pageItems} />
         </div>
 
-        <div className="flex flex-col justify-center items-center gap-5 py-5">
+        <div className="flex flex-col justify-center items-center gap-5 pt-5">
           <ChangePage actualPage={page} lastPage={totalPages} productName={productName}/>
           <Banner/>
         </div>

@@ -7,7 +7,7 @@ interface FornecedorCardProps {
 
 const FornecedorCard: React.FC<FornecedorCardProps> = ({ image, alt }) => {
   return (
-    <div className="flex items-center justify-center px-6 py-2">
+    <div className="flex items-center justify-center px-6">
       <img
         src={image}
         alt={alt || "Fornecedor"}

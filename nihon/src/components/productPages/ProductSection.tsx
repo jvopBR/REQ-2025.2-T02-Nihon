@@ -22,8 +22,7 @@ export default async function ProductSection({ products }: FirstProductSectionPr
       gap-3  
       sm:gap-7
       md:gap-6.5
-      xl:gap-10
-      2xl:gap-20
+      xl:gap-x-10 xl:gap-y-5
       ">
         {products.map((product) => (
           <Product key={product.idproduto} name={product.nome} idproduto={product.idproduto}/>
