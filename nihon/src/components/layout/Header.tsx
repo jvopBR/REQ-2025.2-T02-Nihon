@@ -19,7 +19,7 @@ const Header = () => {
     }
   };
 
-  const PHONE_NUMBER = "+ 55 (61) 2107-7575";
+  const PHONE_NUMBER = "(61) 2107-7575";
   const PHONE_TEL = "tel:+556121077575";
 
   const navLinks = [
@@ -52,7 +52,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden xl:flex items-center gap-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -65,7 +65,7 @@ const Header = () => {
           </nav>
 
           {/* Desktop Social Icons + Phone (phone shows number) */}
-          <div className="hidden md:flex items-center gap-5 text-gray-500 h-full">
+          <div className="hidden xl:flex items-center gap-5 text-gray-500 h-full">
             {socialLinks.map((social) => {
               const Icon = social.icon;
               return (
@@ -78,9 +78,9 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu} aria-label="Toggle Menu">
-              {isOpen ? <FiX className="h-7 w-7 text-gray-800" /> : <FiMenu className="h-7 w-7 text-primary" />}
+          <div className="xl:hidden">
+            <button onClick={toggleMenu} aria-label="Toggle Menu" className="cursor-pointer">
+              {isOpen ? <FiX className="h-7 w-7 text-gray-800 " /> : <FiMenu className="h-7 w-7 text-primary " />}
             </button>
           </div>
         </div>
@@ -89,12 +89,12 @@ const Header = () => {
       {/* --- Mobile Menu --- */}
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black bg-opacity-20 backdrop-blur-sm md:hidden transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 z-40 bg-black bg-opacity-20 backdrop-blur-sm xl:hidden transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={toggleMenu}
       />
 
       {/* Menu Panel */}
-      <div className={`fixed top-0 right-0 h-full w-4/5 max-w-sm z-50 bg-white md:hidden transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`fixed top-0 right-0 h-full w-4/5 max-w-sm z-50 bg-white xl:hidden transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-end p-5">
           <button onClick={toggleMenu} aria-label="Close Menu">
             <FiX className="h-8 w-8 text-gray-800" />
@@ -114,8 +114,8 @@ const Header = () => {
         </nav>
 
         {/* Mobile phone action (visible and clickable) */}
-        <div className="mt-8 px-6 w-full">
-          <a href={PHONE_TEL} className="w-full flex items-center justify-center gap-3 bg-green-600 text-white py-3 rounded-md hover:bg-green-700 transition-colors" onClick={handleLinkClick} aria-label="Ligar para a empresa">
+        <div className="mt-8 px-6 w-full cursor-pointer">
+          <a href={PHONE_TEL} className="w-full flex items-center justify-center gap-3 bg-[#ED3135] text-white py-3 rounded-md hover:bg-red-700 transition-colors" onClick={handleLinkClick} aria-label="Ligar para a empresa">
             <FaPhoneAlt className="w-5 h-5" />
             <span className="font-semibold">{PHONE_NUMBER}</span>
           </a>

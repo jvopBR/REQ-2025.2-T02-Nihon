@@ -13,6 +13,7 @@ export function CategoriesCarousel() {
     "PADARIA",
     "REFRIGERAÇÃO",
     "AUTOMAÇÃO COMERCIAL",
+    "UTENSÍLIOS"
   ];
 
   const square_categories_ref = [
@@ -21,6 +22,7 @@ export function CategoriesCarousel() {
     "Padaria e Confeitaria",
     "Refrigeração Comercial",
     "Automação Comercial",
+    "Utensílios"
   ];
 
   const square_categories_img = [
@@ -29,6 +31,7 @@ export function CategoriesCarousel() {
     "/images/padaria.png",
     "/images/refrigeracao.png",
     "/images/automacao.png",
+    "/images/utensilio.png"
   ];
 
   useEffect(() => {
@@ -51,9 +54,14 @@ export function CategoriesCarousel() {
     <div
       ref={carouselRef}
       className="
-        w-full flex gap-5 lg:gap-10 2xl:gap-20 items-center justify-start
-        overflow-x-auto overflow-y-hidden 
-        h-[200px] xl:h-[300px]
+        py-6 md:p-10
+        w-full flex 
+        gap-5 
+        md:gap-15
+        lg:gap-20
+        2xl:gap-x-50
+        items-center justify-center
+        flex-wrap
         snap-x snap-mandatory
         px-4
         sm:justify-center
@@ -63,9 +71,13 @@ export function CategoriesCarousel() {
         <Link key={i} href={`/${encodeURIComponent(square_categories_ref[i])}/products`}>
           <motion.div
             className="
-              w-[125px] h-[145px]
-              lg:w-[150px] lg:h-[170px]
-              xl:w-50 xl:h-60 
+              w-[150px] h-[170px]
+              min-[375px]:w-[160px] min-[375px]:h-[180px]
+              min-[390px]:w-[165px] min-[390px]:h-[185px]
+              min-[405px]:w-[175px] min-[405px]:h-[195px]
+              min-[420px]:w-[180px] min-[420px]:h-[200px]
+              lg:w-[230px] lg:h-[250px]
+              xl:w-[280px] xl:h-[300px] 
               bg-gray-200 flex flex-col items-center justify-center 
               shadow-md rounded-xl transition hover:scale-105
               snap-center
@@ -75,14 +87,14 @@ export function CategoriesCarousel() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.1, delay: i * 0.05 }}
           >
-            <p className="text-gray-600 text-[10px] md:text-[12px] lg:text-[14px] xl:text-[16px] text-center">
+            <p className="text-gray-600 text-[12px] lg:text-[14px] xl:text-[16px] text-center">
               {cat}
             </p>
 
             <img
               src={square_categories_img[i]}
               alt={square_categories_img[i]}
-              className="w-[50px] h-[50px] md:w-[75px] md:h-[75px] lg:w-[100px] lg:h-[100px] xl:w-36 xl:h-36 object-contain"
+              className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] object-contain"
             />
           </motion.div>
         </Link>

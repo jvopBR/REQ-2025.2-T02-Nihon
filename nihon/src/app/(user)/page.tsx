@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { SuppliersCarousel } from "@/components/homePage/SuppliersCarousel";
 import { CategoriesCarousel } from "@/components/homePage/CategoriesCarousel";
-import { Categories } from "@/components/homePage/Categories";
 import { Infos } from "@/components/homePage/Infos";
+import { Categories } from "@/components/homePage/Categories";
+
 
 
 export default function Home() {

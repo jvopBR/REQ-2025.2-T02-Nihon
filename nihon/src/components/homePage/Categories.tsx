@@ -9,11 +9,11 @@ export function Categories() {
       const categories = [
         "Bar e Restaurante",
         "Mobiliário Comercial",
-        "Utensílios",
+        "Suprimentos",
     ];
 
     return(
-            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-gray-700 pt-[25px] md:py-10   ">
+            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-gray-700 pt-6 md:pt-10">
                       {categories.map((category, index) => (
                         <motion.div
                           key={index}
