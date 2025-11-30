@@ -28,7 +28,7 @@ export default async function Product({product}: ProductProps) {
                     <StatusButton state={product.status}/>
                 </div>
                 <EditProduct idproduto={product.idproduto}/>
-                <RemoveProduct/>
+                <RemoveProduct idproduto={product.idproduto}/>
             </div>
         </div>
     );
