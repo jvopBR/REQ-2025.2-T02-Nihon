@@ -8,7 +8,7 @@ type ProductInfoProps = {
 
 export function ProductInfo({nome, tipo, statusProduto, nomeFornecedor}: ProductInfoProps) {
     return(
-    <div className="bg-white border rounded-lg p-4 shadow-sm">
+    <div className="w-full bg-white border rounded-lg p-4 shadow-sm">
         <h3 className="font-semibold mb-2">Características do Produto</h3>
         <ul className="text-sm text-gray-700 space-y-1">
           <li><strong>Nome:</strong> {nome ?? "—"}</li>
@@ -23,7 +23,7 @@ export function ProductInfo({nome, tipo, statusProduto, nomeFornecedor}: Product
 
 export function ProductDescription({ descricao }: { descricao: string | undefined }) {  
     return(
-    <div className="bg-white border rounded-lg p-4 shadow-sm">
+    <div className="w-full bg-white border rounded-lg p-4 shadow-sm">
         <h3 className="font-semibold mb-2">Descrição do Produto</h3>
         <p className="text-sm text-gray-700">{descricao ?? "Sem descrição disponível."}</p>
     </div>

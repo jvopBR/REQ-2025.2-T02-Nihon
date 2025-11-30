@@ -19,7 +19,7 @@ export default async function Product({product}: ProductProps) {
         <div className="h-[120px] w-full flex justify-between bg-white border border-gray-300 rounded-3xl px-10 text-black">
             <div className="flex flex-col justify-center gap-2">
 
-                <h1 className="text-[22.5px]">{product.nome}</h1>
+                <h1 className="text-[22.5px] pr-5">{product.nome}</h1>
                 <p className="text-[12.5px] text-gray-600">Fornecedor: {supplier.nome}</p>
             </div>
             <div className="flex justify-center items-center gap-3">

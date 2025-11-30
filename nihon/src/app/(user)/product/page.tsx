@@ -4,6 +4,7 @@ import SimilarProducts from "./SimilarProducts";
 import { ProductInfo, ProductDescription } from "@/components/product/ProductInfo";
 import { BackButton } from "@/components/product/BackButton";
 import { redirect } from "next/navigation";
+import { OrderButton } from "@/components/product/OrderButton";
 
 type Product = {
   idproduto: number;
@@ -23,6 +24,7 @@ export default async function ProductDescriptionPage({ searchParams }: { searchP
   }
   
   const idproduto = Number(id);
+
 
   let product: Product | null = null;
   let supplierName: string | null = null;
@@ -51,20 +53,17 @@ export default async function ProductDescriptionPage({ searchParams }: { searchP
 
         {error && <div className="mb-4 text-red-600">{error}</div>}
 
-        <div className="flex flex-col gap-5">
-          <div className="bg-white rounded-lg p-6 shadow">
+        <div className="flex flex-col gap-5 justify-center items-center ">
+          <div className="w-full bg-white rounded-lg p-6 shadow">
             <div className="">
               <Gallery images={images} />
             </div>
           </div>
-
+            <OrderButton/>
             <ProductInfo nome={product?.nome} tipo={product?.tipo} statusProduto={product?.status} nomeFornecedor={supplierName} />
             <ProductDescription descricao={product?.descricao} />
         </div>
 
-        {/*<div className="mt-8">
-          <SimilarProducts />
-        </div>*/}
 
       </div>
     </div>
