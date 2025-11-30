@@ -12,11 +12,17 @@ export function AddProduct() {
     );
 }
 
-export function EditProduct() {
+type EditProductProps = {
+    idproduto: number;
+}
+
+export function EditProduct({idproduto}: EditProductProps) {
     return(
-        <button className="h-10 w-10 rounded-xl border border-gray-300 cursor-pointer flex pt-2.5 pl-3 transition hover:scale-105">
-            <FaRegEdit/>
-        </button> 
+        <Link href={`/auth/admin/products/edit/${idproduto}`}>
+            <button className="h-10 w-10 rounded-xl border border-gray-300 cursor-pointer flex pl-[13px] transition hover:scale-105">
+                <FaRegEdit/>
+            </button> 
+        </Link>
     );
 }
 

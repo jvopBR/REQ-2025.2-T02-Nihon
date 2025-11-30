@@ -18,7 +18,7 @@ export default function SideNav(props: any) {
       console.warn("logout error:", err);
     } finally {
       setSigningOut(false);
-      router.push("/auth");
+      router.push("/auth/login");
     }
   }
 

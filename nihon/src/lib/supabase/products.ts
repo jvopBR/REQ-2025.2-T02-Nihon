@@ -11,12 +11,57 @@ type Product = {
   descricao: string;
 }
 
+export async function fetchCategoriesByProductId(idproduto: number) {
+
+  const { data: categoryIds, error: error1 } = await supabase_user.from("produtos_categorias").select("idcategoria").eq("idproduto", idproduto);
+
+  if (error1) {
+    throw new Error(error1.message);
+  }
+
+  if (!categoryIds || categoryIds.length === 0) {
+    return []; 
+  }
+
+  const ids = categoryIds.map(c => c.idcategoria);
+
+  const { data: categories, error: error2 } = await supabase_user.from("categoria").select("*").in("idcategoria", ids); 
+
+  if (error2) {
+    throw new Error(error2.message);
+  }
+
+  return categories; 
+}
+
 export async function fetchProductById(idproduto: number) {
     const { data: Product, error } = await supabase_user.from("produto").select("*").eq("idproduto", idproduto).single();
     if (error) {
         throw new Error(error.message);
     }
     return Product as Product;
+}
+
+export async function fetchSupplierByProductId(idproduto: number) {
+  const { data , error } = await supabase_user
+        .from("produto")
+        .select("idfornecedor")
+        .eq("idproduto", idproduto)
+        .single();
+    if (error) {
+        throw new Error(error.message);
+    }
+    const idfornecedor = data.idfornecedor; // ✅ extrai o número
+
+    const { data: Supplier, error: error2 } = await supabase_user
+        .from("fornecedor")
+        .select("nome")
+        .eq("idfornecedor", idfornecedor)
+        .single();
+    if (error2) {
+        throw new Error(error2.message);
+    }
+    return Supplier;
 }
 
 export async function fetchSupplierById(idfornecedor: number) {

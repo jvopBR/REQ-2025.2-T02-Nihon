@@ -25,7 +25,7 @@ export default async function Page({ searchParams }: { searchParams: { productNa
                 </div>
                 <div className="py-10 flex flex-col gap-10">
                     {products.map((product) => (
-                        <Product key={product.idproduto} title={product.nome} idfornecedor={product.idfornecedor} status={product.status}/>
+                        <Product key={product.idproduto} product={product}/>
                     ))}
                 </div>
             </div>

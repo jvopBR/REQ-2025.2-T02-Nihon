@@ -2,6 +2,7 @@ import { supabaseUser } from '../client';
 
 const supabase_user = supabaseUser();
 
+
 export const fetchAllProducts = async () => {
     const {data: products, error} = await supabase_user.from('produto').select('*');
     if (error) throw error;
