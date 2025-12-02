@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductInfo from './page'
+import ProductInfo from '../../../components/product/ProductInfo'
 import { AppRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 describe('<ProductInfo />', () => {
