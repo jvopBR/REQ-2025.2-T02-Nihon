@@ -39,6 +39,7 @@ export default function SearchBar({ category, categoryName }: SearchBarProps) {
             onChange={(e) => setValue(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            placeholder="Pesquisar..."
             className="
               h-[40px] w-[200px] sm:w-[350px] md:w-[500px] lg:w-[600px] xl:w-[700px]
               bg-white rounded-3xl

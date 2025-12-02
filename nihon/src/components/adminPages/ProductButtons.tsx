@@ -1,5 +1,11 @@
+"use client";
+
+import { useState } from "react";
+
 import { FaRegEdit, FaRegTrashAlt, FaArrowLeft  } from "react-icons/fa";
 import Link from "next/link";
+
+import { Modal } from "./RemoveProduct";
 
 
 export function AddProduct() {
@@ -12,19 +18,37 @@ export function AddProduct() {
     );
 }
 
-export function EditProduct() {
+type EditProductProps = {
+    idproduto: number;
+}
+
+export function EditProduct({idproduto}: EditProductProps) {
     return(
-        <button className="h-10 w-10 rounded-xl border border-gray-300 cursor-pointer flex pt-2.5 pl-3 transition hover:scale-105">
-            <FaRegEdit/>
-        </button> 
+        <Link href={`/auth/admin/products/edit/${idproduto}`}>
+            <button className="h-10 w-10 rounded-xl border border-gray-300 cursor-pointer flex pl-[13px] transition hover:scale-105">
+                <FaRegEdit/>
+            </button> 
+        </Link>
     );
 }
 
-export function RemoveProduct() {
+export function RemoveProduct({idproduto}: {idproduto: number}) {
+    const [modal, setModal] = useState(false);
+
     return(
-        <button className="h-10 w-10 rounded-xl border border-gray-300 cursor-pointer flex justify-center items-center text-[#ED3135]  transition hover:scale-105">
+        <>
+        <button  onClick={() => setModal(true)} className="h-10 w-10 rounded-xl border border-gray-300 cursor-pointer flex justify-center items-center text-[#ED3135]  transition hover:scale-105">
             <FaRegTrashAlt/>
-        </button> 
+        </button>
+        <Modal
+            isOpen={modal}
+            onClose={() => setModal(false)}
+            title="Tem certeza de que deseja excluir este item? "
+            idproduto={idproduto}
+            >
+            <p className="text-[#ED3135]">Esta ação é permanente e não poderá ser desfeita.</p>
+        </Modal> 
+      </>
     );
 }
 

@@ -5,17 +5,21 @@ import { filterProductsByBrand } from "@/lib/supabase/productPage";
 
 import SearchBar from "@/components/productPages/SearchBar";
 import BrandSection from "@/components/productPages/BrandSection"; 
-import FirstProductSection from "@/components/productPages/FirstProductSection";
+import ProductSection from "@/components/productPages/ProductSection";
 import Banner from "@/components/productPages/Banner"; 
-import SecondProductSection from "@/components/productPages/SecondProductSection";
 import ChangePage from "@/components/productPages/ChangePage";
+import { NotFound } from "@/components/productPages/NotFound";
 
-export default async function Page({ params, searchParams }: {params: {categoryName: string, brandName: string}, searchParams: { productName?: string, page?: string} }) {
 
-  const categoryName = decodeURIComponent(params.categoryName);
-  const brandName = decodeURIComponent(params.brandName);
-  const productName = searchParams?.productName || null;
-  const page = Number(searchParams.page) || 1;
+export default async function Page({ params, searchParams }: { params: { categoryName: string, brandName: string }, searchParams: { productName?: string, page?: string } }) {
+
+  const resolvedParams = await (params as any);
+  const resolvedSearchParams = await (searchParams as any);
+
+  const categoryName = decodeURIComponent(resolvedParams.categoryName);
+  const brandName = decodeURIComponent(resolvedParams.brandName);
+  const productName = resolvedSearchParams?.productName || null;
+  let page = Number(resolvedSearchParams?.page) || 1;
 
   let products = await fetchProductsByCategory(categoryName);
   products = await filterProductsByBrand(products, brandName);    
@@ -29,15 +33,16 @@ export default async function Page({ params, searchParams }: {params: {categoryN
   const amountBrands = brands ? brands.length : 0;
   const groupedProducts: any[][] = [];
 
-  if(products) {
-    for (let i = 0; i < products.length; i += 6) {
-      groupedProducts.push(products.slice(i, i + 6));
-    }
-  }
+  // paginação: 12 itens por página
+  const pageSize = 12;
+  const totalPages = Math.max(1, Math.ceil(amountProducts / pageSize));
+  if (page > totalPages) page = totalPages;
 
-  const totalPages =  Math.ceil(amountProducts / 12);
-  const evenID = (page - 1) * 2;
-  const oddID = evenID + 1;
+  // fatia os produtos para a página atual (sempre tenta preencher até 12)
+  const startIndex = (page - 1) * pageSize;
+  const pageItems = (products || []).slice(startIndex, startIndex + pageSize);
+
+
 
    return(
         <div className="h-auto w-full bg-[#F2F2F2]">
@@ -49,29 +54,15 @@ export default async function Page({ params, searchParams }: {params: {categoryN
                 </div>
                 
                 <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
-                    {groupedProducts[evenID] ? 
-                        (<FirstProductSection products={groupedProducts[evenID]} />) : 
-                    (null)}
+                    <ProductSection products={pageItems} /> 
                 </div>
-
-                <div className="py-6">
-                    <Banner/>
-                </div>
-                    
-                {groupedProducts[oddID] ? (
-                    <div className="mx-4 pb-5 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
-                        <SecondProductSection products={groupedProducts[oddID]}/>
-                    </div>) : 
-                (null)}
-
-                <div className="flex justify-center pb-5">
+                <div className="flex flex-col justify-center items-center gap-5 py-5">
                     <ChangePage actualPage={page} lastPage={totalPages} productName={productName}/>
+                    <Banner/>
                 </div>
             </>) : 
             (<>
-                <h1 className="text-black text-center">Quantidade de Marcas: {amountBrands}</h1>
-                <h1 className="text-black text-center">Quantidade de Produtos: {amountProducts}</h1>
-                <h1 className="text-center text-black">Não encontramos nenhum produto!</h1>
+                <NotFound/>
             </>)}
         </div>
     );

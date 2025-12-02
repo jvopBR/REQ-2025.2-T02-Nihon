@@ -124,7 +124,7 @@
   }
   
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground m-0 p-0; /* reset margins/padding to avoid default browser offsets */
     font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
   }
   
@@ -136,5 +136,12 @@
   p, span, div {
     font-family: "Arial", Arial, sans-serif;
     font-weight: 500;
+  }
+
+  /* make images and svgs responsive to prevent horizontal overflow */
+  img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 }

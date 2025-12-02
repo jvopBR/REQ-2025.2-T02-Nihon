@@ -14,7 +14,7 @@ export default function Gallery({ images }: { images: string[] }) {
   }
 
   return (
-    <div className="w-full flex gap-6 items-start">
+    <div className="w-full flex gap-6 items-start h-[300px] md:h-[400px]">
       {/* thumbnails */}
       <div className="hidden sm:flex flex-col gap-3">
         {images.map((src, i) => (
@@ -29,16 +29,16 @@ export default function Gallery({ images }: { images: string[] }) {
       </div>
 
       {/* main */}
-      <div className="relative flex-1 flex items-center justify-center">
-        <button onClick={prev} aria-label="previous" className="absolute left-0 z-10 p-2 bg-white rounded-full shadow-md -ml-2 sm:-ml-4">
+      <div className="relative flex-1 flex items-center justify-center gap-1.5 h-[300px] md:h-[400px] ">
+        <button onClick={prev} aria-label="previous" className="w-10 h-10 left-0 z-10 p-2 bg-white rounded-full shadow-md -ml-2 sm:-ml-4 cursor-pointer">
           ‹
         </button>
 
-        <div className="bg-white rounded-xl p-4 shadow-inner w-full max-w-full flex items-center justify-center">
-          <Image src={images[index]} alt={`product-${index}`} width={800} height={600} className="w-full h-auto object-contain" />
+        <div className="bg-white rounded-xl p-4 shadow w-full max-w-full flex items-center justify-center sm:w-[300px] lg:w-[400px]">
+          <Image src={images[index]} alt={`product-${index}`} width={800} height={600} className="w-full h-[200px] sm:h-[300px] object-contain" />
         </div>
 
-        <button onClick={next} aria-label="next" className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md -mr-2 sm:-mr-4">
+        <button onClick={next} aria-label="next" className="w-10 h-10 right-0 z-10 p-2 bg-white rounded-full shadow-md -mr-2 sm:-mr-4 cursor-pointer">
           ›
         </button>
       </div>

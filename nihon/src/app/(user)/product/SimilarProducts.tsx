@@ -2,10 +2,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/client";
+import { supabaseUser } from "@/lib/supabase/client";
 
 export default function SimilarProducts({ product }: { product?: any }) {
-  const supabase = useMemo(() => createClient(), []);
+  const supabase = useMemo(() => supabaseUser(), []);
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 

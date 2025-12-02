@@ -22,10 +22,11 @@ export default async function Product({ name, idproduto }: ProductProps) {
       min-[420px]:w-[162px]
       md:w-[200px]
       lg:w-[280px]
-      xl:w-[350px]
+      xl:w-[250px]
       ">
-      
-      <Link href='/produtosDescricao'>
+    
+
+      <Link href={`/product?id=${idproduto}`}>
         
       <div className="
           h-[130px] w-[130px]
@@ -35,7 +36,7 @@ export default async function Product({ name, idproduto }: ProductProps) {
           min-[420px]:h-[162px] min-[420px]:w-[162px]
           md:h-[200px] md:w-[200px]
           lg:h-[280px] lg:w-[280px]
-          xl:h-[350px] xl:w-[350px]
+          xl:h-[250px] xl:w-[250px]
           bg-cover 
           bg-center
           shadow-[2px_4px_10px_rgba(0,0,0,0.2)]
@@ -68,7 +69,7 @@ export default async function Product({ name, idproduto }: ProductProps) {
       min-[420px]:w-[162px] 
       md:w-[200px]
       lg:w-[280px]
-      xl:w-[350px]
+      xl:w-[250px]
       ">
         {name}
       </p>
@@ -77,13 +78,8 @@ export default async function Product({ name, idproduto }: ProductProps) {
       flex 
       justify-center 
       items-center 
-      gap-[5px]
-      min-[375px]:gap-[7.5px]
-      md:gap-[10px]
-      lg:gap-[15px]
-      xl:gap-[25px]
       w-full">
-        <Link href="/">
+        <Link href={`/product?id=${idproduto}`}>
             <button className="
                 flex 
                 items-center 
@@ -93,32 +89,16 @@ export default async function Product({ name, idproduto }: ProductProps) {
                 min-[390px]:text-[10.5px]
                 md:px-[20px] md:py-[10px] md:text-[12px]
                 lg:px-[25px] lg:py-[12.5px] lg:text-[14px]
-                xl:px-[35px] xl:text-[16px]
                 rounded-full
                 text-nowrap
                 shadow-[2px_4px_10px_rgba(0,0,0,0.2)]
                 bg-[#ED3135]
                 text-white
                 transition-transform hover:scale-105
+                cursor-pointer
               ">
               Saiba mais
             </button>
-        </Link>
-
-        <Link href="/">
-          <p className="
-              text-[8px]
-              min-[375px]:text-[9.5px]
-              min-[390px]:text-[10.5px]
-              md:text-[12px]
-              lg:text-[14px]  
-              xl:text-[16px]
-              text-nowrap
-              text-[#ED3135]
-              transition-transform hover:scale-105
-            ">
-            Fazer pedido
-          </p>
         </Link>
       </div>
     </div>

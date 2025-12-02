@@ -1,10 +1,15 @@
 import SearchBar from "@/components/adminPages/SearchNihon";
 import {AddProduct} from "@/components/adminPages/ProductButtons";
 import Product from "@/components/adminPages/Product";
+import { fetchAllProducts, filterProductsByName } from "@/lib/supabase/admin/userClient-product";
 
-
-export default function Page() {
-    const arrayProducts = Array.from({ length: 10 }, (_, i) => i + 1);
+export default async function Page({ searchParams }: { searchParams: { productName?: string }}) {
+    const params = await (searchParams as any);
+    const productName = params?.productName ?? null;
+    let products = await fetchAllProducts();
+    if(productName)
+        products = filterProductsByName(products ,productName);
+    
     return(
         <div className="flex flex-col min-h-screen w-full bg-[#FBFAFA]">
             <div className="flex items-center justify-between pt-10">
@@ -18,9 +23,9 @@ export default function Page() {
                 <div className="pt-5">
                     <SearchBar/>
                 </div>
-                <div className="pt-10 flex flex-col gap-10">
-                    {arrayProducts.map((index)=>(
-                        <Product key={index}/>
+                <div className="py-10 flex flex-col gap-10">
+                    {products.map((product) => (
+                        <Product key={product.idproduto} product={product}/>
                     ))}
                 </div>
             </div>

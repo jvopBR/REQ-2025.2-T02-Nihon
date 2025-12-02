@@ -1,12 +1,12 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { supabaseUser } from "@/lib/supabase/client";
 import NavLink from "./NavLinks";
 
 export default function SideNav(props: any) {
   const router = useRouter();
-  const supabase = useMemo(() => createClient(), []);
+  const supabase = useMemo(() => supabaseUser(), []);
 
   const [signingOut, setSigningOut] = useState(false);
 
@@ -18,7 +18,7 @@ export default function SideNav(props: any) {
       console.warn("logout error:", err);
     } finally {
       setSigningOut(false);
-      router.push("/auth");
+      router.push("/auth/login");
     }
   }
 
@@ -28,13 +28,16 @@ export default function SideNav(props: any) {
       <div className="flex flex-col gap-5">
         <NavLink />
       </div>
+
+
+      {/*Refatorar com botao da react-icons*/}
       {/* botão de logout fixado ao final do menu lateral */}
       <div className="mt-auto px-4 py-4">
         <button
           type="button"
           onClick={handleLogout}
           disabled={signingOut}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded bg-red-600 text-white hover:bg-red-700 disabled:opacity-60"
+          className="w-full flex h-12 items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#ED3135] text-white hover:bg-red-700 disabled:opacity-60 cursor-pointer transition hover:scale-105"
         >
           {/* ícone de logout (SVG inline) */}
           <svg
@@ -57,6 +60,7 @@ export default function SideNav(props: any) {
           <span>{signingOut ? "Saindo..." : "Logout"}</span>
         </button>
       </div>
+
     </div>
   );
 }

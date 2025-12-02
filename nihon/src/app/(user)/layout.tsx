@@ -23,5 +23,13 @@ import Header from "@/components/layout/Header";
 
 export default function UserLayout({ children }: { children: React.ReactNode }) {
   // layout filho deve apenas renderizar children quando Header/Footer já são gerenciados no root
-  return <>{children}</>;
+  return (
+  <>
+    <Header />
+      <main className="bg-white">
+        {children}
+      </main>
+    <Footer />
+    <ScrollToTopButton />
+  </>);
 }
