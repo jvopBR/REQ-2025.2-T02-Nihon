@@ -14,6 +14,7 @@
     "test:e2e:open": "cypress open"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
@@ -32,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cypress": "^15.6.0",
     "cypress": "^14.5.4",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.0.0",
